@@ -169,6 +169,3 @@ int close_port(int fd)
 {
     return close(fd);
 }
-
-
-

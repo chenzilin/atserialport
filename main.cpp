@@ -1,5 +1,7 @@
 #include <time.h>
+#include <fcntl.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <string.h>
 #include <sys/time.h>
 
@@ -25,13 +27,17 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+    if (access(argv[1], F_OK) != 0) {
+        return -1;
+    }
+
     fd = open_port(argv[1]);
-    if(fd < 0) {
+    if (fd < 0) {
         fprintf(stderr, "Error: open_port error!\n");
         return -1;
     }
 
-    if(set_port(fd, 115200, 8, 'N', 1) < 0) {
+    if (set_port(fd, 115200, 8, 'N', 1) < 0) {
         fprintf(stderr, "Error: set_port error!\n");
         return -1;
     }
@@ -54,5 +60,3 @@ int main(int argc, char *argv[])
     }
     return 0;
 }
-
-
