@@ -19,12 +19,6 @@ int open_port(const char *serial_port)
         return -1;
     }
 
-    /*测试打开的文件描述符是否应用一个终端设备，以进一步确认串口是否正确打开*/
-    if(!isatty(STDIN_FILENO)) {
-        printf("Standard input isn't a terminal device !\n");
-        return -1;
-    }
-
     return fd;
 }
 
